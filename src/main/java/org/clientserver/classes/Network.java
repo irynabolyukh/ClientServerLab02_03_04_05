@@ -4,5 +4,5 @@ import java.net.InetAddress;
 
 public interface Network {
     void receiveMessage();
-    void sendMessage(byte[] mess, InetAddress inetAddress);
+    void sendMessage(byte[] mess, InetAddress inetAddress) throws Exception;
 }

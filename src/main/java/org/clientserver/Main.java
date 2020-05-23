@@ -1,5 +1,4 @@
 package org.clientserver;
-import org.clientserver.classes.Cipher;
 import org.clientserver.classes.Processor;
 import org.clientserver.classes.impl.TCPNetwork;
 
