@@ -1,6 +1,5 @@
 package org.clientserver.classes.impl;
 
-import org.clientserver.classes.Cipher;
 import org.clientserver.classes.Processor;
 import org.clientserver.entities.MessageGenerator;
 import org.clientserver.classes.Network;
@@ -22,9 +21,9 @@ public class TCPNetwork implements Network {
     @Override
     public void sendMessage(byte[] mess, InetAddress inetAddress){
         try {
-            Packet packet = new Packet(mess);//package with response
+            Packet packet = new Packet(mess);//unpacked package with response
             System.out.println("\n~~~~~~~~~~~~~~~~~\n#" + Thread.currentThread().getId()+" Send respond to user: "
-                                 + packet.getBMsq().getMessage() + "\nTo: "+inetAddress.toString()
+                                 +  new String(packet.getBMsq().getMessage()) + "\nTo: "+inetAddress.toString()
                                     + "\nTime: " + LocalDateTime.now() + "\n~~~~~~~~~~~~~~~~~");
         } catch (Exception e) {
             e.printStackTrace();

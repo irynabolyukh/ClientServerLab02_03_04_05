@@ -17,8 +17,8 @@ public class Processor implements Runnable{
         this.packet = packet;
     }
 
-    public static void process(byte [] message) throws Exception {
-        service.submit(new Processor(new Packet(message)));
+    public static void process(byte [] encodedPacket) throws Exception {
+        service.submit(new Processor(new Packet(encodedPacket)));
     }
 
     public static void shutdown(){
@@ -35,16 +35,19 @@ public class Processor implements Runnable{
 
     @Override
     public void run() {
+
         try {
             Thread.sleep(3000);
             InetAddress inetAddress = InetAddress.getLocalHost();
-            new TCPNetwork().sendMessage(Encode.encode(new Message(1, packet.getBMsq().getbUserId(),
-                                                                    packet.getBMsq().getMessage()+" -> Ok!")), inetAddress);
+
+            System.out.println("received: " + new String(packet.getBMsq().getMessage()));
+            new TCPNetwork().sendMessage(PackRespond.packRespond(new Message(1,
+                    packet.getBMsq().getbUserId(), packet.getBMsq().getMessage())), inetAddress);
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 }

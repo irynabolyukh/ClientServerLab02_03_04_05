@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0ee43ce-b5b3-4b54-9ffe-36f7e3485134" name="Default Changelist" comment="" />
+    <list default="true" id="e0ee43ce-b5b3-4b54-9ffe-36f7e3485134" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Cipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/DeEncriptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/PackRespond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/TCPNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/TCPNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Cipher$CipherBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Cipher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Encode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Processor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Processor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/impl/TCPNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/classes/impl/TCPNetwork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Message$cTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Message$cTypes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/entities/MessageGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/entities/MessageGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Packet.class" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,16 +35,53 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state relative-caret-position="363">
+              <caret line="25" column="42" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="25" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1590264122704" expanded="true" signature="315:945" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="68" column="7" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+              <folding>
+                <element signature="e#820#821#0" expanded="true" />
+                <element signature="e#856#857#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/PackRespond.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -31,20 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+            <state relative-caret-position="289">
+              <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/TCPNetwork.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+            <state relative-caret-position="271">
+              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,10 +114,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="250">
+              <caret line="61" column="51" lean-forward="true" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,9 +137,14 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>decode</find>
       <find>se</find>
+      <find>encode</find>
+      <find>decode</find>
+      <find>before</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -105,22 +159,27 @@
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Network.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encriptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/TCPNetwork.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Cipher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/DeEncriptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/TCPNetwork.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/PackRespond.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-27" />
-    <option name="width" value="1036" />
+    <option name="x" value="444" />
+    <option name="y" value="19" />
+    <option name="width" value="886" />
     <option name="height" value="788" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -195,25 +254,47 @@
             </path>
             <path>
               <item name="ClientServerLab02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClientServerLab02" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClientServerLab02" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClientServerLab02" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="clientserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClientServerLab02" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/client-server-java-master" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="OPEN_URL_DIALOG">
+      <recent name="https://github.com/FIUKMA/practice-2-tik-tak-irynabolyukh.git" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -227,7 +308,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.MainTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.clientserver.Main" />
       <module name="ClientServerLab02" />
@@ -236,6 +317,66 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ClientServerLab02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.clientserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.clientserver" />
+      <option name="MAIN_CLASS_NAME" value="org.clientserver.MainTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest" type="JUnit" factoryName="JUnit">
+      <module name="ClientServerLab02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.clientserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.clientserver" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.check_DeEncriptor_forPacket" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ClientServerLab02" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.clientserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.clientserver" />
+      <option name="MAIN_CLASS_NAME" value="org.clientserver.MainTest" />
+      <option name="METHOD_NAME" value="check_DeEncriptor_forPacket" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.MainTest" />
+      <item itemvalue="JUnit.MainTest.check_DeEncriptor_forPacket" />
+      <item itemvalue="JUnit.MainTest (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MainTest (1)" />
+        <item itemvalue="JUnit.MainTest.check_DeEncriptor_forPacket" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -247,12 +388,45 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590148684283</updated>
-      <workItem from="1590148691169" duration="21798000" />
+      <workItem from="1590148691169" duration="22422000" />
+      <workItem from="1590230215275" duration="26485000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="MainTest - 2020.05.23 at 23h 02m 22s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 04m 14s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 06m 29s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 07m 55s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 08m 10s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 10m 04s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 10m 16s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 10m 41s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 14m 17s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2020.05.23 at 23h 14m 36s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21798000" />
+    <option name="totallyTimeSpent" value="48907000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -265,25 +439,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" weight="0.1580938" />
+      <window_info content_ui="combo" id="Project" order="5" weight="0.42736077" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.3747954" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.39934534" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.22422259" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.3878887" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.30687022" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Theme Preview" order="0" />
@@ -302,17 +477,17 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.1580938" />
+      <window_info content_ui="combo" id="Project" order="5" weight="0.25470334" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.3747954" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.39934534" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.28641573" />
+      <window_info active="true" anchor="bottom" id="Debug" order="8" visible="true" weight="0.3878887" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3289689" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -339,53 +514,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="10" column="21" lean-forward="true" selection-end-line="33" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encriptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-307">
-          <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Cipher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="66" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Client.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Server.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encriptor.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -393,20 +524,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Encode.java">
+    <entry file="https://github.com/FIUKMA/practice-2-tik-tak-irynabolyukh.git">
+      <provider selected="true" editor-type-id="httpFileEditor" />
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.3.2/junit-platform-commons-1.3.2.jar!/org/junit/platform/commons/util/ReflectionUtils.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        <state relative-caret-position="115">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/29.0-jre/guava-29.0-jre.jar!/com/google/common/primitives/UnsignedLong.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#1041#1042#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/DeEncriptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+        <state relative-caret-position="949">
+          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1590262271511" expanded="true" signature="450:1073" ph="..." />
+            <marker date="1590262271511" expanded="true" signature="1076:2507" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-166">
+          <caret line="91" column="50" selection-start-line="91" selection-start-column="50" selection-end-line="91" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
+            <marker date="1590262898263" expanded="true" signature="3402:4651" ph="..." />
+            <marker date="1590262898263" expanded="true" signature="3403:4651" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -415,28 +584,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/TCPNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+        <state relative-caret-position="271">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/PackRespond.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        <state relative-caret-position="199">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="363">
+          <caret line="25" column="42" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1590264122704" expanded="true" signature="315:945" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="61" column="51" lean-forward="true" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -445,8 +625,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="49" column="1" lean-forward="true" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
+        <state relative-caret-position="119">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding>
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="68" column="7" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
