@@ -3,15 +3,7 @@ package org.clientserver.entities;
 import com.github.snksoft.crc.CRC;
 import com.google.common.primitives.UnsignedLong;
 import lombok.Data;
-import org.clientserver.classes.DeEncriptor;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.nio.ByteBuffer;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 @Data
 public class Packet {
@@ -22,6 +14,14 @@ public class Packet {
     Short wCrc16_1;
     Message bMsq;
     Short wCrc16_2;
+    public Short getwCrc16_1() {
+        return wCrc16_1;
+    }
+    public Short getwCrc16_2() {
+        return wCrc16_2;
+    }
+
+
 
     public final static Integer packetPartFirstLengthWithoutwLen = bMagic.BYTES + Byte.BYTES + Long.BYTES;
     public final static Integer packetPartFirstLength = packetPartFirstLengthWithoutwLen + Integer.BYTES;
@@ -44,10 +44,28 @@ public class Packet {
         bPktId = UnsignedLong.fromLongBits(buffer.getLong());
         wLen = buffer.getInt();
         wCrc16_1 = buffer.getShort();
+        byte[] packetPartFirst = ByteBuffer.allocate(packetPartFirstLength)
+                .put(bMagic)
+                .put(bSrc)
+                .putLong(bPktId.longValue())
+                .putInt(wLen)
+                .array();
+        final Short crc1Evaluated = calculateCRC16(packetPartFirst);
+        if(!crc1Evaluated.equals(wCrc16_1)){
+            throw new IllegalArgumentException("CRC1 expected: " + crc1Evaluated + ", out was " + getwCrc16_1());
+        }
         byte[] messageBody = new byte[wLen];
         buffer.get(messageBody);
         bMsq = new Message(messageBody);//constructor to DECRYPT encoded MESSAGE
         wCrc16_2 = buffer.getShort();
+        Integer packetPartSecondLength = bMsq.getMessageBytesLength();
+        byte[] packetPartSecond = ByteBuffer.allocate(packetPartSecondLength)
+                .put(bMsq.toPacketPart())
+                .array();
+        final Short crc2Evaluated = calculateCRC16(packetPartSecond);
+        if(!crc2Evaluated.equals(wCrc16_2)){
+            throw new IllegalArgumentException("CRC2 expected: " + crc2Evaluated + ", out was " + getwCrc16_2());
+        }
     }
 
     //PACK THE PACKET WITH ENCODED MESSAGE FOR USER

@@ -6,6 +6,7 @@ import org.clientserver.classes.Network;
 import org.clientserver.entities.Packet;
 
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 public class TCPNetwork implements Network {
@@ -23,7 +24,7 @@ public class TCPNetwork implements Network {
         try {
             Packet packet = new Packet(mess);//unpacked package with response
             System.out.println("\n~~~~~~~~~~~~~~~~~\n#" + Thread.currentThread().getId()+" Send respond to user: "
-                                 +  new String(packet.getBMsq().getMessage()) + "\nTo: "+inetAddress.toString()
+                                 +  new String(packet.getBMsq().getMessage(), StandardCharsets.UTF_8) + "\nTo: "+inetAddress.toString()
                                     + "\nTime: " + LocalDateTime.now() + "\n~~~~~~~~~~~~~~~~~");
         } catch (Exception e) {
             e.printStackTrace();

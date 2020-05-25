@@ -6,6 +6,7 @@ import org.clientserver.entities.Packet;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ public class Processor implements Runnable{
         this.packet = packet;
     }
 
-    public static void process(byte [] encodedPacket) throws Exception {
+    public static void process(byte [] encodedPacket){
         service.submit(new Processor(new Packet(encodedPacket)));
     }
 
@@ -39,9 +40,7 @@ public class Processor implements Runnable{
         try {
             Thread.sleep(3000);
             InetAddress inetAddress = InetAddress.getLocalHost();
-
-            System.out.println("received: " + new String(packet.getBMsq().getMessage()));
-            new TCPNetwork().sendMessage(PackRespond.packRespond(new Message(1,
+            new TCPNetwork().sendMessage(PackResponse.packResponse(new Message(1,
                     packet.getBMsq().getbUserId(), packet.getBMsq().getMessage())), inetAddress);
 
         } catch (UnknownHostException e) {
