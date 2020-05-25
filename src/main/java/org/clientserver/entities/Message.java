@@ -13,24 +13,20 @@ import java.security.NoSuchAlgorithmException;
 
 @Data
 public class Message {
-    public byte[] getMessage() { return message; }
-
-    public Integer getbUserId() { return bUserId; }
-
-    public byte[] getWhole() { return whole; }
-
-    public void setWhole(byte[] whole) { this.whole = whole; }
-
-    public void setBUserId(Integer bUserId) {
-        this.bUserId = bUserId;
+    public byte[] getMessage() {
+        return message;
     }
 
-    public void setCType(Integer cType) {
-        this.bUserId = cType;
+    public Integer getcType() {
+        return cType;
     }
 
-    public void setMessage(byte[] message) {
-        this.message = message;
+    public Integer getbUserId() {
+        return bUserId;
+    }
+
+    public byte[] getWhole() {
+        return whole;
     }
 
     enum cTypes {
@@ -49,7 +45,7 @@ public class Message {
 
     public static final int BYTES_WITHOUT_MESSAGE = Integer.BYTES + Integer.BYTES;
 
-    public Message(byte[] whole){
+    public Message(byte[] whole) {//ENCODED MESSAGE
 
         this.whole = whole;
 
@@ -58,7 +54,7 @@ public class Message {
             ByteBuffer buffer = ByteBuffer.wrap(decoded);
             this.cType = buffer.getInt();
             this.bUserId = buffer.getInt();
-            message = new byte[decoded.length - 8];
+            message = new byte[decoded.length - BYTES_WITHOUT_MESSAGE];
             buffer.get(message);
 
         } catch (InvalidAlgorithmParameterException e) {
@@ -85,7 +81,7 @@ public class Message {
     }
 
     public byte[] toPacketPart() {
-        byte[] msg = ByteBuffer.allocate(8 + message.length)
+        byte[] msg = ByteBuffer.allocate(BYTES_WITHOUT_MESSAGE + message.length)
                 .putInt(cType)
                 .putInt(bUserId)
                 .put(message).array();
@@ -108,51 +104,7 @@ public class Message {
         return res;
     }
 
-
     public int getMessageBytesLength() {
         return whole.length;
     }
-
-//    public void encode() {
-//        setMessage(DeEncriptor.encode(getMessage()));
-//    }
-//
-//    public void decode() {
-//        setMessage(DeEncriptor.decode(getMessage()));
-//    }
-//    public void encode() {
-//        try {
-//            setMessage(DeEncriptor.encode(getMessage()));
-//        } catch (NoSuchPaddingException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (InvalidAlgorithmParameterException e) {
-//            e.printStackTrace();
-//        } catch (InvalidKeyException e) {
-//            e.printStackTrace();
-//        } catch (BadPaddingException e) {
-//            e.printStackTrace();
-//        } catch (IllegalBlockSizeException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void decode()  {
-//        try {
-//            message = DeEncriptor.decode(message);
-//        } catch (InvalidAlgorithmParameterException e) {
-//            e.printStackTrace();
-//        } catch (InvalidKeyException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchPaddingException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (BadPaddingException e) {
-//            e.printStackTrace();
-//        } catch (IllegalBlockSizeException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

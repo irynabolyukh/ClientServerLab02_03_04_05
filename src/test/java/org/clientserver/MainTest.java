@@ -43,7 +43,7 @@ public class MainTest{
     }
 
     @Test
-    void check_DeEncriptor_forPacket() throws Exception {
+    void check_DeEncriptor_forPacket() {
         Message originalMessage = new Message(1,1, new String("hello from user").getBytes());
         byte[] origMessageToBytes = originalMessage.toPacketPart();
         Packet packet = new Packet((byte)1, UnsignedLong.ONE, originalMessage);
@@ -55,18 +55,13 @@ public class MainTest{
     }
 
     @Test
-    void check_DeEncriptor_forPacket2() throws Exception {
+    void check_DeEncriptor_forPacket2(){
         Message originalMessage = new Message(1,1, new String("hello from user").getBytes());
         Packet packet = new Packet((byte)1, UnsignedLong.ONE, originalMessage);
         byte[] packBytes = packet.toPacket();
         Packet packet1 = new Packet(packBytes);
         byte [] packBytes1 = packet1.toPacket();
         assert(Arrays.equals(packBytes, packBytes1));
-    }
-
-    @Test
-    void checkWhether_InvalidCrc() {
-
     }
 
     @Test
@@ -87,5 +82,14 @@ public class MainTest{
         }
         Processor.shutdown();
         System.out.println("End of main");
+    }
+
+    @Test
+    void checkWhether_InvalidCrc(){
+        final String input = "1300000000000000000a000000300a8b6c0221f35d79ec1715362980276b7c96a5ec7b0f8e40428fff0f7f54652c00dce9ea";
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new Packet(Hex.decodeHex(input))
+        );
     }
 }
