@@ -7,7 +7,16 @@ import java.nio.ByteBuffer;
 
 @Data
 public class Packet {
+    public static Byte getbMagic() {
+        return bMagic;
+    }
+
     public final static Byte bMagic = 0x13;
+
+    public UnsignedLong getbPktId() {
+        return bPktId;
+    }
+
     UnsignedLong bPktId;
     Byte bSrc;
     Integer wLen;
