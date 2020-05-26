@@ -40,8 +40,9 @@ public class Processor implements Runnable{
         try {
             Thread.sleep(3000);
             InetAddress inetAddress = InetAddress.getLocalHost();
-            new TCPNetwork().sendMessage(PackResponse.packResponse(new Message(1,
-                    packet.getBMsq().getbUserId(), packet.getBMsq().getMessage())), inetAddress);
+//            new TCPNetwork().sendMessage(PackResponse.packResponse(new Message(1,
+//                    packet.getBMsq().getbUserId(), packet.getBMsq().getMessage())), inetAddress);
+            new TCPNetwork().sendMessage(PackResponse.packResponse(packet), inetAddress);
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
