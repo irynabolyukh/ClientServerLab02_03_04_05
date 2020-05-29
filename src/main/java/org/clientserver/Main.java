@@ -22,7 +22,7 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Processor.shutdown();
+        //Processor.shutdown();
         System.out.println("End of main");
     }
 }

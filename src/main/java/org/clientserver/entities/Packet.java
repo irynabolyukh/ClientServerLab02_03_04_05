@@ -10,19 +10,10 @@ public class Packet {
     public static Byte getbMagic() {
         return bMagic;
     }
-
-    public final static Byte bMagic = 0x13;
-
     public UnsignedLong getbPktId() {
         return bPktId;
     }
-
-    UnsignedLong bPktId;
-    Byte bSrc;
-    Integer wLen;
-    Short wCrc16_1;
-    Message bMsq;
-    Short wCrc16_2;
+    public Byte getUserId() { return userId; }
     public Short getwCrc16_1() {
         return wCrc16_1;
     }
@@ -30,14 +21,22 @@ public class Packet {
         return wCrc16_2;
     }
 
+    public final static Byte bMagic = 0x13;
+    UnsignedLong bPktId;
+    Byte userId;//user ID
+    Integer wLen;
+    Short wCrc16_1;
+    Message bMsq;
+    Short wCrc16_2;
+
 
 
     public final static Integer packetPartFirstLengthWithoutwLen = bMagic.BYTES + Byte.BYTES + Long.BYTES;
     public final static Integer packetPartFirstLength = packetPartFirstLengthWithoutwLen + Integer.BYTES;
     public final static Integer packetPartFirstLengthWithCRC16 = packetPartFirstLength + Short.BYTES;
 
-    public Packet(Byte bSrc, UnsignedLong bPktId, Message bMsq) {
-        this.bSrc = bSrc;
+    public Packet(Byte userId, UnsignedLong bPktId, Message bMsq) {
+        this.userId = userId;
         this.bPktId = bPktId;
         this.bMsq = bMsq;
         wLen = bMsq.getMessageBytesLength();
@@ -49,13 +48,13 @@ public class Packet {
         if(!expectedBMagic.equals(bMagic)){
             throw new IllegalArgumentException("Invalid magic byte!");
         }
-        bSrc = buffer.get();
+        userId = buffer.get();
         bPktId = UnsignedLong.fromLongBits(buffer.getLong());
         wLen = buffer.getInt();
         wCrc16_1 = buffer.getShort();
         byte[] packetPartFirst = ByteBuffer.allocate(packetPartFirstLength)
                 .put(bMagic)
-                .put(bSrc)
+                .put(userId)
                 .putLong(bPktId.longValue())
                 .putInt(wLen)
                 .array();
@@ -82,7 +81,7 @@ public class Packet {
         Message message = getBMsq();
         byte[] packetPartFirst = ByteBuffer.allocate(packetPartFirstLength)
                 .put(bMagic)
-                .put(bSrc)
+                .put(userId)
                 .putLong(bPktId.longValue())
                 .putInt(wLen)
                 .array();
