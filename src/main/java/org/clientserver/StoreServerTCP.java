@@ -1,5 +1,8 @@
 package org.clientserver;
 
+import org.clientserver.classes.Processor;
+import org.clientserver.entities.Packet;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -36,9 +39,10 @@ public class StoreServerTCP {
                     final int messageSize = inputStream.read(inputMessage);
                     new Thread(() -> {
                         try {
-                            System.out.println("Message from client: " + new String(inputMessage, 0, messageSize, StandardCharsets.UTF_8));
+                            Packet receivedPacket = new Packet(inputMessage);
+                            System.out.println("Message from client: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8));
                             final OutputStream outputStream = socket.getOutputStream();
-                            outputStream.write("SERVER_OK".getBytes(StandardCharsets.UTF_8));
+                            outputStream.write(Processor.process(inputMessage));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

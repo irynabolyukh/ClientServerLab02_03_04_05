@@ -1,5 +1,9 @@
 package org.clientserver;
 
+import org.clientserver.entities.Message;
+import org.clientserver.entities.MessageGenerator;
+import org.clientserver.entities.Packet;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -21,11 +25,13 @@ public class StoreClientTCP {
                     final InputStream inputStream = socket.getInputStream();
                     final OutputStream outputStream = socket.getOutputStream();
 
-                    outputStream.write("MESSAGE_FROM_CLIENT".getBytes(StandardCharsets.UTF_8));
+                    final byte[] message_from_user = MessageGenerator.generate();
+                    outputStream.write(message_from_user);
 
                     final byte[] inputMessage = new byte[100];
                     final int messageSize = inputStream.read(inputMessage);
-                    System.out.println("Response: " + new String(inputMessage, 0, messageSize, StandardCharsets.UTF_8));
+                    Packet receivedPacket = new Packet(inputMessage);
+                    System.out.println("Response: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8));
 
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
