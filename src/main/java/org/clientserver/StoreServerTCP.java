@@ -1,6 +1,7 @@
 package org.clientserver;
 
 import org.clientserver.classes.Processor;
+import org.clientserver.entities.Message;
 import org.clientserver.entities.Packet;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class StoreServerTCP {
@@ -39,10 +41,13 @@ public class StoreServerTCP {
                     final int messageSize = inputStream.read(inputMessage);
                     new Thread(() -> {
                         try {
-                            Packet receivedPacket = new Packet(inputMessage);
+                            byte fullPacket[] = new byte[messageSize];
+                            System.arraycopy(inputMessage, 0, fullPacket, 0, messageSize);
+                            Packet receivedPacket = new Packet(fullPacket);
+                            System.out.println(Arrays.toString(fullPacket));
                             System.out.println("Message from client: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8));
                             final OutputStream outputStream = socket.getOutputStream();
-                            outputStream.write(Processor.process(inputMessage));
+                            outputStream.write(Processor.process(fullPacket));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

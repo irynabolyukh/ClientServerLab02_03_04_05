@@ -11,6 +11,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class StoreClientTCP {
 
@@ -30,7 +31,10 @@ public class StoreClientTCP {
 
                     final byte[] inputMessage = new byte[100];
                     final int messageSize = inputStream.read(inputMessage);
-                    Packet receivedPacket = new Packet(inputMessage);
+                    byte fullPacket[] = new byte[messageSize];
+                    System.arraycopy(inputMessage, 0, fullPacket, 0, messageSize);
+                    Packet receivedPacket = new Packet(fullPacket);
+                    System.out.println(Arrays.toString(fullPacket));
                     System.out.println("Response: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8));
 
                 } catch (UnknownHostException e) {
