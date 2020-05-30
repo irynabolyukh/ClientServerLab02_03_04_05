@@ -3,22 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="e0ee43ce-b5b3-4b54-9ffe-36f7e3485134" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientTCP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientTCP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerTCP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerTCP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerUDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerUDP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/StoreClientTCP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/StoreClientTCP.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/StoreClientUDP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/StoreClientUDP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/StoreServerTCP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/StoreServerTCP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Network.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/PackResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/impl/TCPNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/org/clientserver/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/org/clientserver/MainTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/StoreServerUDP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/StoreServerUDP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Processor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/classes/Processor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/entities/MessageGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/entities/MessageGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/clientserver/entities/Packet.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,8 +32,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerTCP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-442">
-              <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+            <state relative-caret-position="493">
+              <caret line="40" column="90" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientTCP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="19" column="81" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+            <state relative-caret-position="102">
+              <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,17 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="21" column="145" selection-start-line="21" selection-start-column="145" selection-end-line="21" selection-end-column="145" />
+            <state relative-caret-position="204">
+              <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+            <state relative-caret-position="221">
+              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -90,8 +80,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerUDP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+            <state relative-caret-position="652">
+              <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-272">
+              <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,14 +160,14 @@
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Message.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/PackResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/impl/UDPNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/clientserver/MainTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerUDP.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerTCP.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerUDP.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientTCP.java" />
       </list>
     </option>
@@ -412,8 +426,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StoreClientUDP" />
         <item itemvalue="Application.StoreServerUDP" />
+        <item itemvalue="Application.StoreClientUDP" />
         <item itemvalue="JUnit.MainTest.checkWhether_InvalidCrc" />
         <item itemvalue="JUnit.MainTest (1)" />
         <item itemvalue="JUnit.MainTest.check_DeEncriptor_forPacket" />
@@ -437,7 +451,7 @@
       <workItem from="1590746345022" duration="624000" />
       <workItem from="1590750371713" duration="21884000" />
       <workItem from="1590834355514" duration="3084000" />
-      <workItem from="1590841966013" duration="12802000" />
+      <workItem from="1590841966013" duration="20345000" />
     </task>
     <servers />
   </component>
@@ -474,7 +488,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97535000" />
+    <option name="totallyTimeSpent" value="105078000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -499,12 +513,12 @@
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.117839605" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.4599018" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.07037643" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.049099836" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.22422259" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.5040917" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.3878887" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.30605564" />
@@ -525,20 +539,20 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16641453" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.16641453" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.117839605" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.4599018" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.07037643" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.42716858" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.117839605" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.29787233" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.3878887" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.30605564" />
+      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.30605564" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Database" order="1" />
@@ -641,17 +655,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="192">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="21" column="145" selection-start-line="21" selection-start-column="145" selection-end-line="21" selection-end-column="145" />
+        <state relative-caret-position="221">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/classes/Processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -660,25 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerTCP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
-          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/MessageGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/entities/Packet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+        <state relative-caret-position="493">
+          <caret line="40" column="90" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -687,8 +697,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreServerUDP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+        <state relative-caret-position="652">
+          <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientUDP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -697,8 +717,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/clientserver/StoreClientTCP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="19" column="81" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+        <state relative-caret-position="102">
+          <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

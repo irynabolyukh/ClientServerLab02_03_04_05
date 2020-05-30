@@ -1,5 +1,6 @@
 package org.clientserver;
 
+import com.google.common.primitives.UnsignedLong;
 import org.clientserver.entities.MessageGenerator;
 import org.clientserver.entities.Packet;
 
@@ -13,53 +14,56 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class StoreClientTCP {
     private static final int CLIENT_PORT = 2222;
-    private static final AtomicInteger RECONNECT = new AtomicInteger(0);
-    private static final AtomicInteger RECONNECT_MAX = new AtomicInteger(2000);
+    private static final int RECONNECT_MAX = 3;
+    private static final int AMOUNT_OF_CLIENTS = 50;
+
     private static final AtomicInteger NUMBER_RECEIVED = new AtomicInteger(0);
     private static final AtomicInteger NUMBER_DEAD = new AtomicInteger(0);
-    private static final AtomicInteger AMOUNT_OF_CLIENTS = new AtomicInteger(1000);
-
 
 
     public static void main(String[] args) {
-        for (int i = 0; i < AMOUNT_OF_CLIENTS.get(); i++) {
+        for (int i = 1; i < AMOUNT_OF_CLIENTS+1; i++) {
+            final int srcID = i;//userId
+            final int pktID = 1;
+            final int reconnect_num = 1;
             new Thread(() -> {
                 try (final Socket socket = new Socket(InetAddress.getByName(null), CLIENT_PORT)) {
-                    clientTCP(socket);
+                    clientTCP(socket,srcID,pktID);
                 }  catch (IOException e) {
                     //e.printStackTrace();
                     System.out.println("Reconnecting");
-                    reconnect();
+                    reconnect(srcID, pktID, reconnect_num);
                 }
             }).start();
         }
     }
 
-    private static void reconnect() {
+    private static void reconnect(int srcID, int pktID, int reconnect_num) {
         try {
             final Socket socket = new Socket(InetAddress.getByName(null), CLIENT_PORT);
-            socket.setSoTimeout(2_000);
-            clientTCP(socket);
+            socket.setSoTimeout(3_000*reconnect_num);
+            clientTCP(socket, srcID, pktID);
         } catch (IOException e) {
             // e.printStackTrace();
             System.out.println("Reconnecting");
             System.out.println("SERVER IS OFFLINE!!!");
-            if(RECONNECT.get() == RECONNECT_MAX.get()){
+            if(reconnect_num == RECONNECT_MAX){
                 NUMBER_DEAD.incrementAndGet();
-                System.out.println("SERVER IS DEAD:( \t\t NUMBER of DEAD: "+ NUMBER_DEAD);
+                System.out.println("SERVER IS DEAD:( \t\t NUMBER of DEAD connections: "+ NUMBER_DEAD);
             }
             else{
-                RECONNECT.incrementAndGet();
-                reconnect();
+                int newPktId = pktID + 1;
+                int reconnect = reconnect_num + 1;
+                reconnect(srcID, newPktId, reconnect);
             }
         }
     }
 
-    private static void clientTCP(Socket socket) throws IOException {
+    private static void clientTCP(Socket socket, int srcID, int pktID) throws IOException {
         final InputStream inputStream = socket.getInputStream();
         final OutputStream outputStream = socket.getOutputStream();
 
-        final byte[] message_from_user = MessageGenerator.generate();
+        final byte[] message_from_user = MessageGenerator.generate((byte)srcID, UnsignedLong.valueOf(pktID));
         outputStream.write(message_from_user);
         outputStream.flush();
         Packet packetFromUser = new Packet(message_from_user);
@@ -74,7 +78,11 @@ public class StoreClientTCP {
             System.out.println("CORRECT packet was sent!");
         else
             System.out.println("WRONG response");
+
         NUMBER_RECEIVED.incrementAndGet();
-        System.out.println("Response: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8) + "\n\t\tNUMBER:" + NUMBER_RECEIVED);
+        System.out.println("Response from server: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8)
+                                            + "\t for user with ID: " + receivedPacket.getSrcId()
+                                            + "\t for packet with ID: " + receivedPacket.getbPktId()
+                                            + "\t\tNUMBER of RECEIVED:" + NUMBER_RECEIVED);
     }
 }

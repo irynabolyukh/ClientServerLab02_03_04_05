@@ -13,7 +13,7 @@ public class Packet {
     public UnsignedLong getbPktId() {
         return bPktId;
     }
-    public Byte getUserId() { return userId; }
+    public Byte getSrcId() { return srcId; }
     public Short getwCrc16_1() {
         return wCrc16_1;
     }
@@ -22,8 +22,8 @@ public class Packet {
     }
 
     public final static Byte bMagic = 0x13;
+    Byte srcId;//user ID
     UnsignedLong bPktId;
-    Byte userId;//user ID
     Integer wLen;
     Short wCrc16_1;
     Message bMsq;
@@ -35,8 +35,8 @@ public class Packet {
     public final static Integer packetPartFirstLength = packetPartFirstLengthWithoutwLen + Integer.BYTES;
     public final static Integer packetPartFirstLengthWithCRC16 = packetPartFirstLength + Short.BYTES;
 
-    public Packet(Byte userId, UnsignedLong bPktId, Message bMsq) {
-        this.userId = userId;
+    public Packet(Byte srcId, UnsignedLong bPktId, Message bMsq) {
+        this.srcId = srcId;
         this.bPktId = bPktId;
         this.bMsq = bMsq;
         wLen = bMsq.getMessageBytesLength();
@@ -48,13 +48,13 @@ public class Packet {
         if(!expectedBMagic.equals(bMagic)){
             throw new IllegalArgumentException("Invalid magic byte!");
         }
-        userId = buffer.get();
+        srcId = buffer.get();
         bPktId = UnsignedLong.fromLongBits(buffer.getLong());
         wLen = buffer.getInt();
         wCrc16_1 = buffer.getShort();
         byte[] packetPartFirst = ByteBuffer.allocate(packetPartFirstLength)
                 .put(bMagic)
-                .put(userId)
+                .put(srcId)
                 .putLong(bPktId.longValue())
                 .putInt(wLen)
                 .array();
@@ -81,7 +81,7 @@ public class Packet {
         Message message = getBMsq();
         byte[] packetPartFirst = ByteBuffer.allocate(packetPartFirstLength)
                 .put(bMagic)
-                .put(userId)
+                .put(srcId)
                 .putLong(bPktId.longValue())
                 .putInt(wLen)
                 .array();
