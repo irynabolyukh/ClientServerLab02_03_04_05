@@ -81,8 +81,8 @@ public class StoreClientTCP {
 
         NUMBER_RECEIVED.incrementAndGet();
         System.out.println("Response from server: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8)
-                                            + "\t for user with ID: " + receivedPacket.getSrcId()
-                                            + "\t for packet with ID: " + receivedPacket.getbPktId()
-                                            + "\t\tNUMBER of RECEIVED:" + NUMBER_RECEIVED);
+                + "\t for user with ID: " + receivedPacket.getSrcId()
+                + "\t for packet with ID: " + receivedPacket.getbPktId()
+                + "\t\tNUMBER of RECEIVED:" + NUMBER_RECEIVED);
     }
 }

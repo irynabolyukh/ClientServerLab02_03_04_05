@@ -9,10 +9,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class StoreServerTCP {
 
-    public static final int SERVER_PORT = 2222;
+    private static final int SERVER_PORT = 2222;
+    private static final AtomicInteger SENT = new AtomicInteger(0);
 
     public static void main(String[] args) {
 
@@ -42,6 +44,7 @@ public class StoreServerTCP {
 
                             final OutputStream outputStream = socket.getOutputStream();
                             outputStream.write(Processor.process(fullPacket));
+                            SENT.incrementAndGet();
                             outputStream.flush();
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -57,5 +60,6 @@ public class StoreServerTCP {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("\n\nAMOUNT of SENT: " + SENT.get());
     }
 }
