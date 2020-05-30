@@ -3,8 +3,6 @@ package org.clientserver;
 import com.google.common.primitives.UnsignedLong;
 import org.apache.commons.codec.binary.Hex;
 import org.clientserver.classes.DeEncriptor;
-import org.clientserver.classes.Processor;
-import org.clientserver.classes.impl.TCPNetwork;
 import org.clientserver.entities.Message;
 import org.clientserver.entities.Packet;
 import org.junit.jupiter.api.Test;
@@ -62,26 +60,6 @@ public class MainTest{
         Packet packet1 = new Packet(packBytes);
         byte [] packBytes1 = packet1.toPacket();
         assert(Arrays.equals(packBytes, packBytes1));
-    }
-
-    @Test
-    void checkWhether_SuccessfulFinished() {
-        ExecutorService executorService = Executors.newFixedThreadPool(12);
-        for(int i = 0; i < 24; i++)
-            executorService.submit(()->{
-                TCPNetwork tcpNetwork = new TCPNetwork();
-                tcpNetwork.receiveMessage();
-            });
-        try{
-            executorService.shutdown();
-            while(!executorService.awaitTermination(24L, TimeUnit.HOURS)){
-                System.out.println("waiting for termination...");
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-       //Processor.shutdown();
-        System.out.println("End of main");
     }
 
     @Test

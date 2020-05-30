@@ -40,14 +40,11 @@ public class StoreServerUDP {
                             final int realMessageSize = packet.getLength();
                             byte[] packetBytes = new byte[realMessageSize];
                             System.arraycopy(packet.getData(), 0, packetBytes, 0, packetBytes.length);
-                            Processor.process(packetBytes);
 
-                           // System.out.println("Message from client: " + new String(inputMessage, 0, realMessageSize, StandardCharsets.UTF_8));
-
-                            final String message = "SERVER_OK";
-                            final byte[] bytes = message.getBytes(StandardCharsets.UTF_8);
+                            final byte[] bytes = Processor.process(packetBytes);
                             final DatagramPacket response = new DatagramPacket(bytes, bytes.length, packet.getAddress(), packet.getPort());
                             serverSocket.send(response);
+                            //System.out.println("Sent response");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
