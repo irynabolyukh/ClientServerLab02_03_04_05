@@ -30,13 +30,17 @@ public class StoreServerTCP {
         }).start();
 
         try (final ServerSocket serverSocket = new ServerSocket(SERVER_PORT)) {
+
             serverSocket.setSoTimeout(2_000);
+
             while (isRun.get()) {
                 try{
                     Socket socket = serverSocket.accept();
+
                     final byte[] inputMessage = new byte[100];
                     final InputStream inputStream = socket.getInputStream();
                     final int messageSize = inputStream.read(inputMessage);
+
                     new Thread(() -> {
                         try {
                             byte[] fullPacket = new byte[messageSize];
@@ -44,6 +48,7 @@ public class StoreServerTCP {
 
                             final OutputStream outputStream = socket.getOutputStream();
                             outputStream.write(Processor.process(fullPacket));
+
                             SENT.incrementAndGet();
                             outputStream.flush();
                         } catch (Exception e) {

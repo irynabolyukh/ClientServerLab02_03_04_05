@@ -11,8 +11,10 @@ public class Processor{
         System.out.println("Message from client: " + new String(packet.getBMsq().getMessage(), StandardCharsets.UTF_8)
                 + "\t\t\t with user ID: " + packet.getSrcId()
                 + "\t\t\t and with packet ID: " + packet.getbPktId());
-        Message answerMessage = new Message(1, 1, ("Server - OK!").getBytes(StandardCharsets.UTF_8));
+
+        Message answerMessage = new Message(packet.getBMsq().getcType(), packet.getBMsq().getbUserId(), ("Server - OK!").getBytes(StandardCharsets.UTF_8));
         Packet answerPacket = new Packet(packet.getSrcId(), packet.getbPktId(), answerMessage);
-        return answerPacket.toPacket(); //returns encoded respond for USER
+
+        return answerPacket.toPacket(); //returns encoded response for USER
     }
 }

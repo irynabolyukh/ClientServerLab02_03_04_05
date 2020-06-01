@@ -17,6 +17,8 @@ public class StoreClientTCP {
     private static final int RECONNECT_MAX = 3;
     private static final int AMOUNT_OF_CLIENTS = 50;
 
+    //variables to check whether right amount of packets was (not) delivered
+    //AMOUNT_OF_CLIENTS = NUMBER_RECEIVED + NUMBER_DEAD
     private static final AtomicInteger NUMBER_RECEIVED = new AtomicInteger(0);
     private static final AtomicInteger NUMBER_DEAD = new AtomicInteger(0);
 
@@ -26,6 +28,7 @@ public class StoreClientTCP {
             final int srcID = i;//userId
             final int pktID = 1;
             final int reconnect_num = 1;
+
             new Thread(() -> {
                 try (final Socket socket = new Socket(InetAddress.getByName(null), CLIENT_PORT)) {
                     clientTCP(socket,srcID,pktID);
@@ -45,8 +48,8 @@ public class StoreClientTCP {
             clientTCP(socket, srcID, pktID);
         } catch (IOException e) {
             // e.printStackTrace();
-            System.out.println("Reconnecting");
-            System.out.println("SERVER IS OFFLINE!!!");
+            System.out.println("Reconnecting\tSERVER IS OFFLINE!!!");
+
             if(reconnect_num == RECONNECT_MAX){
                 NUMBER_DEAD.incrementAndGet();
                 System.out.println("SERVER IS DEAD:( \t\t NUMBER of DEAD connections: "+ NUMBER_DEAD);
@@ -54,6 +57,7 @@ public class StoreClientTCP {
             else{
                 int newPktId = pktID + 1;
                 int reconnect = reconnect_num + 1;
+
                 reconnect(srcID, newPktId, reconnect);
             }
         }
@@ -75,9 +79,9 @@ public class StoreClientTCP {
         Packet receivedPacket = new Packet(fullPacket);
 
         if(packetFromUser.getbPktId().equals(receivedPacket.getbPktId()))
-            System.out.println("CORRECT packet was sent!");
+            System.out.println("CORRECT response!");
         else
-            System.out.println("WRONG response");
+            System.out.println("WRONG response!");
 
         NUMBER_RECEIVED.incrementAndGet();
         System.out.println("Response from server: " + new String(receivedPacket.getBMsq().getMessage(), StandardCharsets.UTF_8)

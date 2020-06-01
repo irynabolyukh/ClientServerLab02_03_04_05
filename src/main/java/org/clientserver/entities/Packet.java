@@ -7,9 +7,15 @@ import java.nio.ByteBuffer;
 
 @Data
 public class Packet {
-    public static Byte getbMagic() {
-        return bMagic;
-    }
+
+    public final static Byte bMagic = 0x13;
+    Byte srcId;//user ID
+    UnsignedLong bPktId;
+    Integer wLen;
+    Short wCrc16_1;
+    Message bMsq;
+    Short wCrc16_2;
+
     public UnsignedLong getbPktId() {
         return bPktId;
     }
@@ -20,15 +26,9 @@ public class Packet {
     public Short getwCrc16_2() {
         return wCrc16_2;
     }
-
-    public final static Byte bMagic = 0x13;
-    Byte srcId;//user ID
-    UnsignedLong bPktId;
-    Integer wLen;
-    Short wCrc16_1;
-    Message bMsq;
-    Short wCrc16_2;
-
+    public Message getBMsq() {
+        return  bMsq;
+    }
 
 
     public final static Integer packetPartFirstLengthWithoutwLen = bMagic.BYTES + Byte.BYTES + Long.BYTES;
@@ -93,10 +93,6 @@ public class Packet {
         wCrc16_2 = calculateCRC16(packetPartSecond);
         Integer packetLength = packetPartFirstLength + wCrc16_1.BYTES + packetPartSecondLength + wCrc16_2.BYTES;
         return ByteBuffer.allocate(packetLength).put(packetPartFirst).putShort(wCrc16_1).put(packetPartSecond).putShort(wCrc16_2).array();
-    }
-
-    public Message getBMsq() {
-        return  bMsq;
     }
 
     public static Short calculateCRC16(byte[] packetPartFirst) {

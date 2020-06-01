@@ -10,9 +10,12 @@ public class MessageGenerator { //GENERATE MESSAGE FROM CLIENT
         Random random = new Random();
         int command = random.nextInt(Message.cTypes.values().length);
         String commandMsg = (Message.cTypes.values()[command]).toString();
+
+        //creates message with random command
         Message testMessage = new Message(command ,1, commandMsg.getBytes(StandardCharsets.UTF_8));
         Packet packet = new Packet(srcID, pktId, testMessage);
-        byte[] packetToBytes = packet.toPacket();
-        return packetToBytes;//encoded packet
+
+        byte[] packetToBytes = packet.toPacket();//encodes packet
+        return packetToBytes;
     }
 }

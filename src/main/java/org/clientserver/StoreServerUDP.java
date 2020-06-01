@@ -45,6 +45,8 @@ public class StoreServerUDP {
                             final DatagramPacket response = new DatagramPacket(bytes, bytes.length, packet.getAddress(), packet.getPort());
                             serverSocket.send(response);
                             System.out.println("Sent response");
+
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (Exception e) {

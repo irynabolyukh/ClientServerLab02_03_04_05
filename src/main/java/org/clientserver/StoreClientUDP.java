@@ -15,10 +15,15 @@ import java.util.Set;
 public class StoreClientUDP {
 
     private static final int CLIENT_PORT = 1234;
+    private static final int AMOUNT_OF_CLIENTS = 4;
+    private static final int AMOUNT_OF_PACKETS = 5;
+    private static final int AMOUNT_OF_RETRIES = 3;
+
 
     public static void main(String[] args) {
 
-        for (int i = 0; i < 4; i++) {
+        //створення 4-ьох клієнтів
+        for (int i = 0; i < AMOUNT_OF_CLIENTS; i++) {
 
             final int srcID = i * 10 + i;
 
@@ -30,11 +35,13 @@ public class StoreClientUDP {
                     Map<Integer, byte[]> historySent = new HashMap<>();
                     Map<Integer, byte[]> historyReceived = new HashMap<>();
 
-                    for (int j = 0; j < 5; j++) {
+                    //SENDING PACKETS
+                    for (int j = 0; j < AMOUNT_OF_PACKETS; j++) {
 
                         final byte[] bytes = MessageGenerator.generate((byte) srcID, UnsignedLong.valueOf(j));
                         final DatagramPacket packet = new DatagramPacket(bytes, bytes.length, InetAddress.getByName(null), CLIENT_PORT);
 
+                        //емуляція втрати 3-го пакета
                         if (j != 3) {
                             serverSocket.send(packet);
                         }
@@ -61,13 +68,14 @@ public class StoreClientUDP {
                         }
                     }
 
-                    for (int k = 0; k < 3; k++) {
+                    //TRYING TO RESEND LOST PACKETS
+                    for (int k = 0; k < AMOUNT_OF_RETRIES; k++) {
                         if (!historySent.isEmpty()) {
 
-                            Set<Integer> keyReseivedSet = historyReceived.keySet();
+                            Set<Integer> keyReceivedSet = historyReceived.keySet();
 
-                            for (Integer key : keyReseivedSet) {
-                                historySent.remove(key);
+                            for (Integer key : keyReceivedSet) {
+                                historySent.remove(key);  //clearing the historySent from packets that weren't lost
                             }
                             historyReceived.clear();
 
