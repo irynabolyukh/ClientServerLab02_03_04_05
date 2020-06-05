@@ -25,7 +25,7 @@ public class Message {
         return whole.length;
     }
 
-    enum cTypes {
+    public enum cTypes {
         GET_PRODUCT_COUNT,
         GET_PRODUCT,
         ADD_PRODUCT,
