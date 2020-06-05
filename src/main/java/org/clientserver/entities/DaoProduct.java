@@ -1,4 +1,187 @@
 package org.clientserver.entities;
 
+import org.clientserver.Main;
+
+import java.sql.*;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class DaoProduct {
+
+    private final Connection connection;
+
+    public DaoProduct(final String dbFile){
+        try{
+            Class.forName("org.sqlite.JDBC");
+            this.connection = DriverManager.getConnection("jdbc:sqlite:"+dbFile);
+        } catch (ClassNotFoundException e) {
+            System.out.println("Can't load SQLite JDBC class");
+            throw new RuntimeException("Can't find class", e);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        initTable();
+    }
+
+    private void initTable() {
+        try(final Statement statement = connection.createStatement()){
+            String query = "create table if not exists " + Main.tableProduct +
+                    " ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'name' text not null, 'price' decimal not null," +
+                    " 'description' text not null, 'manufacturer' text not null," +
+                    " 'amount' decimal not null, unique(name));";
+            statement.execute(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't create products table", e);
+        }
+    }
+
+    public int insertProduct(final Product product){
+        String query = "insert into 'products'" + " ('name', 'price', 'amount', 'description', 'manufacturer') values (?, ?, ?, ?, ?);";
+        try(final PreparedStatement insertStatement = connection.prepareStatement(query)) {
+
+            insertStatement.setString(1, product.getName());
+            insertStatement.setDouble(2, product.getPrice());
+            insertStatement.setDouble(3, product.getAmount());
+            insertStatement.setString(4, product.getDescription());
+            insertStatement.setString(5, product.getManufacturer());
+
+            insertStatement.execute();
+
+            final ResultSet result = insertStatement.getGeneratedKeys();
+            return result.getInt("last_insert_rowid()");
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't insert product", e);
+        }
+    }
+
+    public int updateProduct(Product product){
+        try(final PreparedStatement preparedStatement =
+                    connection.prepareStatement("update 'products' set name = ?, price = ?, amount = ?, description = ?, manufacturer = ?  where id = ?")) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setDouble(2, product.getPrice());
+            preparedStatement.setDouble(3, product.getAmount());
+            preparedStatement.setString(4, product.getDescription());
+            preparedStatement.setString(5, product.getManufacturer());
+            preparedStatement.setDouble(6, product.getId());
+            preparedStatement.executeUpdate();
+            return product.getId();
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't update product", e);
+        }
+    }
+
+    public boolean isNameUnique(final String productName){
+        try(final Statement statement = connection.createStatement()){
+            final ResultSet resultSet = statement.executeQuery(
+              String.format("select count(*) as num_of_products from 'products' where name = '%s'", productName)
+            );
+            resultSet.next();
+            return resultSet.getInt("num_of_products") == 0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't insert product", e);
+        }
+    }
+
+    public List<Product> getList(final int page, final int size, final ProductFilter filter){
+        try(final Statement statement = connection.createStatement()){
+            final String query = Stream.of(
+                    in("id", filter.getIds()),
+                    gte("price", filter.getFromPrice()),
+                    lte("price", filter.getToPrice())
+            )
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.joining(" AND "));
+
+            final String where = query.isEmpty() ? "" : " where "+query;
+            final String sql = String.format("select * from 'products' %s limit %s offset %s", where, size, page * size);
+            final ResultSet resultSet = statement.executeQuery(sql);
+
+            final List<Product> products = new ArrayList<>();
+            while(resultSet.next()){
+                products.add(new Product(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getDouble("price"),
+                        resultSet.getDouble("amount"),
+                        resultSet.getString("description"),
+                        resultSet.getString("manufacturer")));
+            }
+            return products;
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't create table", e);
+        }
+    }
+
+    public Product getProduct(final int id){
+        try(final Statement statement = connection.createStatement()){
+            final String sql = String.format("select * from 'products' where id = %s", id);
+            final ResultSet resultSet = statement.executeQuery(sql);
+
+             Product product = new Product(resultSet.getInt("id"),
+                                           resultSet.getString("name"),
+                                           resultSet.getDouble("price"),
+                                           resultSet.getDouble("amount"),
+                                           resultSet.getString("description"),
+                                           resultSet.getString("manufacturer"));
+            return product;
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't get product", e);
+        }
+    }
+
+    public List<Product> getAll(final int page, final int size){
+        return getList(page, size, new ProductFilter());
+    }
+
+    private static String in(final String fieldName, final Collection<?> collection){
+        if(collection == null || collection.isEmpty()){
+            return null;
+        }
+        return fieldName + " IN (" + collection.stream().map(Objects::toString).collect(Collectors.joining(", ")) + ")";
+    }
+
+    private static String gte(final String fieldName, final Double value){
+        if(value == null){
+            return null;
+        }
+        return fieldName + " >= " + value;
+    }
+
+    private static String lte(final String fieldName, final Double value){
+        if(value == null){
+            return null;
+        }
+        return fieldName + " <= " + value;
+    }
+
+    public void deleteAll(){
+        try(final Statement statement = connection.createStatement()){
+            String query = "delete from "+ Main.tableProduct;
+            statement.execute(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't delete products", e);
+        }
+    }
+
+    public void deleteTable(){
+        try(final Statement statement = connection.createStatement()){
+            String query = "drop table "+ Main.tableProduct;
+            statement.execute(query);
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't delete products", e);
+        }
+    }
+
+    public int deleteProduct(int id){
+        try(final PreparedStatement preparedStatement = connection.prepareStatement("delete from 'products' where id = ?")) {
+            preparedStatement.setDouble(1, id);
+            preparedStatement.executeUpdate();
+            return id;
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't delete product", e);
+        }
+    }
 }
+
