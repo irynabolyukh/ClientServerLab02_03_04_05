@@ -26,7 +26,7 @@ public class ProductFilter {
     }
 
     public void setQuery(String query) {
-        this.query = query;
+            this.query = query;
     }
 
     public Double getFromPrice() {
@@ -74,8 +74,8 @@ public class ProductFilter {
         arr += (Integer) objArr[objArr.length-1] + "]";
 
         JSONObject json = new JSONObject("{"+"\"ids\":"+arr+", \"query\":\""+query+
-                "\", \"fromPrice\":\""+ fromPrice+"\", \"toPrice\":\""+toPrice+
-                "\", \"manufacturer\":\""+ manufacturer+"\", \"group_id\":\""+ group_id+"\"}");
+                "\", \"fromPrice\":"+ fromPrice+", \"toPrice\":"+toPrice+
+                ", \"manufacturer\":\""+ manufacturer+"\", \"group_id\":"+ group_id+"}");
 
         return json;
     }

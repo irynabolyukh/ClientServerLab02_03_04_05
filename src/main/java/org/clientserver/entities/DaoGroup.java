@@ -1,5 +1,7 @@
 package org.clientserver.entities;
 
+import org.json.JSONObject;
+
 import java.sql.*;
 import java.util.*;
 
@@ -34,32 +36,38 @@ public class DaoGroup {
     }
 
     public int insertGroup(final Group group){
-        String query = "insert into 'groups' ('id', 'name', 'description') values (?, ?, ?);";
-        try(final PreparedStatement insertStatement = connection.prepareStatement(query)) {
+        if(isNameUnique(group.getName())) {
+            String query = "insert into 'groups' ('id', 'name', 'description') values (?, ?, ?);";
+            try (final PreparedStatement insertStatement = connection.prepareStatement(query)) {
 
-            insertStatement.setInt(1, group.getId());
-            insertStatement.setString(2, group.getName());
-            insertStatement.setString(3, group.getDescription());
+                insertStatement.setInt(1, group.getId());
+                insertStatement.setString(2, group.getName());
+                insertStatement.setString(3, group.getDescription());
 
-            insertStatement.execute();
+                insertStatement.execute();
 
-            return group.getId();
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't insert group", e);
+                return group.getId();
+            } catch (SQLException e) {
+                throw new RuntimeException("Can't insert group", e);
+            }
         }
+        return -1;
     }
 
     public int updateGroup(Group group){
-        try(final PreparedStatement preparedStatement =
-                    connection.prepareStatement("update 'groups' set name = ?, description = ?  where id = ?")) {
-            preparedStatement.setString(1, group.getName());
-            preparedStatement.setString(2, group.getDescription());
-            preparedStatement.setInt(3, group.getId());
-            preparedStatement.executeUpdate();
-            return group.getId();
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't update group", e);
+        if(isNameUnique(group.getName())) {
+            try (final PreparedStatement preparedStatement =
+                         connection.prepareStatement("update 'groups' set name = ?, description = ?  where id = ?")) {
+                preparedStatement.setString(1, group.getName());
+                preparedStatement.setString(2, group.getDescription());
+                preparedStatement.setInt(3, group.getId());
+                preparedStatement.executeUpdate();
+                return group.getId();
+            } catch (SQLException e) {
+                throw new RuntimeException("Can't update group", e);
+            }
         }
+        return -1;
     }
 
     public boolean isNameUnique(final String groupName){
@@ -132,6 +140,20 @@ public class DaoGroup {
         } catch (SQLException e) {
             throw new RuntimeException("Can't delete product", e);
         }
+    }
+
+    public JSONObject toJSONObject(List<Group> groups){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        stringBuffer.append("{\"list\":[");
+
+        for (Group g: groups) {
+            stringBuffer.append(g.toJSON().toString() + ", ");
+        }
+        stringBuffer.delete(stringBuffer.length()-2, stringBuffer.length()-1);
+        stringBuffer.append("]}");
+
+        return new JSONObject(stringBuffer.toString());
     }
 }
 

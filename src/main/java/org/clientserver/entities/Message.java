@@ -26,13 +26,19 @@ public class Message {
     }
 
     public enum cTypes {
-        GET_PRODUCT_COUNT,
+        INSERT_PRODUCT,
+        DELETE_PRODUCT,
+        UPDATE_PRODUCT,
         GET_PRODUCT,
-        ADD_PRODUCT,
-        ADD_PRODUCT_TITLE,
-        SET_PRODUCT_PRICE,
-        ADD_PRODUCT_TO_GROUP
+        GET_LIST_PRODUCTS,
+        DELETE_ALL_IN_GROUP, // видалити всі продукти з даної групи
+        INSERT_GROUP,
+        DELETE_GROUP, // видалити всю групу і її рядочки
+        UPDATE_GROUP,
+        GET_GROUP,
+        GET_LIST_GROUPS,
     }
+
 
     byte[] whole;
     Integer cType;

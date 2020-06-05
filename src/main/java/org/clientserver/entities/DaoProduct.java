@@ -1,5 +1,7 @@
 package org.clientserver.entities;
 
+import org.json.JSONObject;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,45 +57,51 @@ public class DaoProduct {
                     resultSet.getInt("group_id"));
             return product;
         } catch (SQLException e) {
-            throw new RuntimeException("Can't create table", e);
+            throw new RuntimeException("Can't get product", e);
         }
     }
 
     public int insertProduct(final Product product){
-        String query = "insert into 'products'" + " ('name', 'price', 'amount', 'description', 'manufacturer', 'group_id') values (?, ?, ?, ?, ?, ?);";
-        try(final PreparedStatement insertStatement = connection.prepareStatement(query)) {
+        if(isNameUnique(product.getName())){
+            String query = "insert into 'products'" + " ('name', 'price', 'amount', 'description', 'manufacturer', 'group_id') values (?, ?, ?, ?, ?, ?);";
+            try(final PreparedStatement insertStatement = connection.prepareStatement(query)) {
 
-            insertStatement.setString(1, product.getName());
-            insertStatement.setDouble(2, product.getPrice());
-            insertStatement.setDouble(3, product.getAmount());
-            insertStatement.setString(4, product.getDescription());
-            insertStatement.setString(5, product.getManufacturer());
-            insertStatement.setInt(6, product.getGroup_id());
+                insertStatement.setString(1, product.getName());
+                insertStatement.setDouble(2, product.getPrice());
+                insertStatement.setDouble(3, product.getAmount());
+                insertStatement.setString(4, product.getDescription());
+                insertStatement.setString(5, product.getManufacturer());
+                insertStatement.setInt(6, product.getGroup_id());
 
-            insertStatement.execute();
+                insertStatement.execute();
 
-            final ResultSet result = insertStatement.getGeneratedKeys();
-            return result.getInt("last_insert_rowid()");
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't insert product", e);
+                final ResultSet result = insertStatement.getGeneratedKeys();
+                return result.getInt("last_insert_rowid()");
+            } catch (SQLException e) {
+                throw new RuntimeException("Can't insert product", e);
+            }
         }
+        return -1;
     }
 
     public int updateProduct(Product product){
-        try(final PreparedStatement preparedStatement =
-                    connection.prepareStatement("update 'products' set name = ?, price = ?, amount = ?, description = ?, manufacturer = ?, group_id = ?  where id = ?")) {
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setDouble(2, product.getPrice());
-            preparedStatement.setDouble(3, product.getAmount());
-            preparedStatement.setString(4, product.getDescription());
-            preparedStatement.setString(5, product.getManufacturer());
-            preparedStatement.setInt(6, product.getGroup_id());
-            preparedStatement.setDouble(7, product.getId());
-            preparedStatement.executeUpdate();
-            return product.getId();
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't update product", e);
+        if(isNameUnique(product.getName())) {
+            try (final PreparedStatement preparedStatement =
+                         connection.prepareStatement("update 'products' set name = ?, price = ?, amount = ?, description = ?, manufacturer = ?, group_id = ?  where id = ?")) {
+                preparedStatement.setString(1, product.getName());
+                preparedStatement.setDouble(2, product.getPrice());
+                preparedStatement.setDouble(3, product.getAmount());
+                preparedStatement.setString(4, product.getDescription());
+                preparedStatement.setString(5, product.getManufacturer());
+                preparedStatement.setInt(6, product.getGroup_id());
+                preparedStatement.setDouble(7, product.getId());
+                preparedStatement.executeUpdate();
+                return product.getId();
+            } catch (SQLException e) {
+                throw new RuntimeException("Can't update product", e);
+            }
         }
+        return -1;
     }
 
     public int deleteProduct(int id){
@@ -219,5 +227,20 @@ public class DaoProduct {
             throw new RuntimeException("Can't delete products", e);
         }
     }
+
+    public JSONObject toJSONObject(List<Product> products){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        stringBuffer.append("{\"list\":[");
+
+        for (Product g: products) {
+            stringBuffer.append(g.toJSON().toString() + ", ");
+        }
+        stringBuffer.delete(stringBuffer.length()-2, stringBuffer.length()-1);
+        stringBuffer.append("]}");
+
+        return new JSONObject(stringBuffer.toString());
+    }
+
 }
 

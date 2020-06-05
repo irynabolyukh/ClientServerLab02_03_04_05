@@ -52,10 +52,10 @@ public class Product {
 
     public JSONObject toJSON(){
 
-        JSONObject json = new JSONObject("{"+"\"id\":\""+id+"\", \"name\":\""+name+
-                "\", \"price\":\""+ price+"\", \"amount\":\""+amount+
-                "\", \"description\":\""+description+"\", \"manufacturer\":\""+manufacturer+
-                "\", \"group_id\":\""+group_id+"\"}");
+        JSONObject json = new JSONObject("{"+"\"id\":"+id+", \"name\":\""+name+
+                "\", \"price\":"+ price+", \"amount\":"+amount+
+                ", \"description\":\""+description+"\", \"manufacturer\":\""+manufacturer+
+                "\", \"group_id\":"+group_id+"}");
 
         return json;
     }

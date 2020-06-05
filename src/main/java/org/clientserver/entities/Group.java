@@ -31,7 +31,7 @@ public class Group {
     }
 
     public JSONObject toJSON(){
-        JSONObject json = new JSONObject("{"+"\"id\":\""+id+"\", \"name\":\""+name+"\", \"description\":\""+description+"\"}");
+        JSONObject json = new JSONObject("{"+"\"id\":"+id+", \"name\":\""+name+"\", \"description\":\""+description+"\"}");
         return json;
 
     }
