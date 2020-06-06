@@ -21,10 +21,6 @@ public class ProductFilter {
         this.ids = ids;
     }
 
-    public String getQuery() {
-        return query;
-    }
-
     public void setQuery(String query) {
             this.query = query;
     }

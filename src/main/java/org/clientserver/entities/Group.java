@@ -35,4 +35,13 @@ public class Group {
         return json;
 
     }
+
+       public boolean equals(Group p){
+        if(this.id.equals(p.getId()) && this.name.equals(p.getName())
+                && this.description.equals(p.getDescription())){
+            return true;
+        }
+        return false;
+    }
+
 }

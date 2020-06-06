@@ -31,7 +31,7 @@ public class StoreServerUDP {
             while (isRun.get()) {
                 try {
 
-                    final byte[] inputMessage = new byte[100];
+                    final byte[] inputMessage = new byte[20000];
                     final DatagramPacket packet = new DatagramPacket(inputMessage, inputMessage.length);
                     serverSocket.receive(packet);
 

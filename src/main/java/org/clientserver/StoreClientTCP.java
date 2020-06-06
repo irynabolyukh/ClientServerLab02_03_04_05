@@ -72,7 +72,7 @@ public class StoreClientTCP {
         outputStream.flush();
         Packet packetFromUser = new Packet(message_from_user);
 
-        final byte[] inputMessage = new byte[1000];
+        final byte[] inputMessage = new byte[20000];
         final int messageSize = inputStream.read(inputMessage);
         byte[] fullPacket = new byte[messageSize];
         System.arraycopy(inputMessage, 0, fullPacket, 0, messageSize);

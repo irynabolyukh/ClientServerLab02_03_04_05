@@ -13,6 +13,7 @@ public class Processor{
         Packet packet = new Packet(packetFromUser);//decoding packet from USER
 
         Message.cTypes [] val = Message.cTypes.values();
+
         int command = packet.getBMsq().getcType();
 
         Message.cTypes command_type = val[command];
@@ -29,11 +30,14 @@ public class Processor{
 
             case INSERT_PRODUCT:
                 information = new JSONObject(message);
+
                 Product product = new Product( information.getInt("id"),information.getString("name"),
                         information.getDouble("price"),information.getDouble("amount"),information.getString("description"),
                         information.getString("manufacturer"),information.getInt("group_id"));
+
                 daoProduct = new DaoProduct("file.db");
                 success = daoProduct.insertProduct(product);
+
                 if(success == -1){
                     reply = "Invalid name of product";
                 }
@@ -44,11 +48,14 @@ public class Processor{
 
             case UPDATE_PRODUCT:
                 information = new JSONObject(message);
+
                 Product product2 = new Product( information.getInt("id"),information.getString("name"),
                         information.getDouble("price"),information.getDouble("amount"),information.getString("description"),
                         information.getString("manufacturer"),information.getInt("group_id"));
+
                 daoProduct = new DaoProduct("file.db");
                 success = daoProduct.updateProduct(product2);
+
                 if(success == -1){
                     reply = "Invalid name of product";
                 }
@@ -58,14 +65,14 @@ public class Processor{
                 break;
 
             case DELETE_PRODUCT:
-                int id3 = Integer.parseInt(message);
+                int id = Integer.parseInt(message);
                 daoProduct = new DaoProduct("file.db");
-                success = daoProduct.deleteProduct(id3);
+                success = daoProduct.deleteProduct(id);
                 if(success == -1){
                     reply = "Invalid name of product";
                 }
                 else{
-                    reply = "Successfully updated product with id " + success;
+                    reply = "Successfully deleted product with id " + success;
                 }
                 break;
 
@@ -73,16 +80,20 @@ public class Processor{
                 int id4 = Integer.parseInt(message);
                 daoProduct = new DaoProduct("file.db");
                 Product product4 = daoProduct.getProduct(id4);
+
                 reply = product4.toJSON().toString();
                 break;
 
             case GET_LIST_PRODUCTS:
                 information = new JSONObject(message);
+
                 int page = information.getInt("page");
                 int size = information.getInt("size");
+
                 JSONObject filtr = information.getJSONObject("productFilter");
                 ProductFilter filter = new ProductFilter();
                 JSONArray array = filtr.getJSONArray("ids");
+
                 if(!filtr.isNull("ids")){
                     List<Integer> arrayList = new ArrayList<>();
                     for(int i = 0; i < array.length(); i++){
@@ -106,6 +117,7 @@ public class Processor{
                     filter.setQuery("query");
                 }
                 daoProduct = new DaoProduct("file.db");
+
                 reply = daoProduct.toJSONObject(daoProduct.getList(page, size, filter)).toString();
                 break;
 
@@ -113,13 +125,14 @@ public class Processor{
                 int id6 = Integer.parseInt(message);
                 daoProduct = new DaoProduct("file.db");
                 daoProduct.deleteAllInGroup(id6);
-                reply = "Products in group " + id6 + "were deleted";
+
+                reply = "Products in group " + id6 + " were deleted";
                 break;
 
             case INSERT_GROUP:
                 information = new JSONObject(message);
-                Group group = new Group( information.getInt("id"),information.getString("name")
-                        ,information.getString("description"));
+                Group group = new Group( information.getInt("id"),information.getString("name"),
+                        information.getString("description"));
                 daoGroup = new DaoGroup("file.db");
                 success = daoGroup.insertGroup(group);
                 if(success == -1){
@@ -129,6 +142,7 @@ public class Processor{
                     reply = "Successfully inserted group";
                 }
                 break;
+
             case DELETE_GROUP:
                 int group_id = Integer.parseInt(message);
                 daoGroup = new DaoGroup("file.db");
@@ -140,12 +154,15 @@ public class Processor{
                     reply = "Successfully deleted group";
                 }
                 break;
+
             case UPDATE_GROUP:
                 information = new JSONObject(message);
-                Group group1 = new Group( information.getInt("id"),information.getString("name")
-                        ,information.getString("description"));
+                Group group1 = new Group( information.getInt("id"),
+                        information.getString("name"), information.getString("description"));
+
                 daoGroup = new DaoGroup("file.db");
                 success = daoGroup.updateGroup(group1);
+
                 if(success == -1){
                     reply = "Invalid name of group";
                 }
@@ -153,6 +170,7 @@ public class Processor{
                     reply = "Successfully updated group";
                 }
                 break;
+
             case GET_GROUP:
                 int group_id1 = Integer.parseInt(message);
                 daoGroup = new DaoGroup("file.db");
@@ -160,6 +178,7 @@ public class Processor{
 
                 reply = resGroup.toJSON().toString();
                 break;
+
             case GET_LIST_GROUPS:
                 daoGroup = new DaoGroup("file.db");
                 reply = daoGroup.toJSONObject(daoGroup.getAll()).toString();

@@ -45,6 +45,7 @@ public class DaoProduct {
 
     public Product getProduct(final int id){
         try(final Statement statement = connection.createStatement()){
+
             final String sql = String.format("select * from 'products' where id = %s", id);
             final ResultSet resultSet = statement.executeQuery(sql);
 
@@ -107,9 +108,7 @@ public class DaoProduct {
     public int deleteProduct(int id){
 
         try(final PreparedStatement preparedStatement = connection.prepareStatement("delete from 'products' where id = ?")) {
-
             preparedStatement.setDouble(1, id);
-
             preparedStatement.executeUpdate();
 
             return id;

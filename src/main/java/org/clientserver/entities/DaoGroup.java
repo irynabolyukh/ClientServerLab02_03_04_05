@@ -150,7 +150,9 @@ public class DaoGroup {
         for (Group g: groups) {
             stringBuffer.append(g.toJSON().toString() + ", ");
         }
-        stringBuffer.delete(stringBuffer.length()-2, stringBuffer.length()-1);
+        if(stringBuffer.length()>9){
+            stringBuffer.delete(stringBuffer.length()-2, stringBuffer.length()-1);
+        }
         stringBuffer.append("]}");
 
         return new JSONObject(stringBuffer.toString());

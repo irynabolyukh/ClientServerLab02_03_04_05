@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MessageGenerator { //GENERATE MESSAGE FROM CLIENT
 //        public static byte[] generate(byte srcID, UnsignedLong pktId) {
@@ -59,9 +58,7 @@ public class MessageGenerator { //GENERATE MESSAGE FROM CLIENT
                 Message msg10 = new Message(Message.cTypes.UPDATE_GROUP.ordinal() , 1, group2.toJSON().toString().getBytes(StandardCharsets.UTF_8));
                 Message msg11 = new Message(Message.cTypes.GET_LIST_PRODUCTS.ordinal() , 1, jsonObj.toString().getBytes(StandardCharsets.UTF_8));
 
-                Message[] msgArray = {msg1, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9, msg10, msg11};
-
-                Packet packet = new Packet(srcId, bPktId, msg9);
+                Packet packet = new Packet(srcId, bPktId, msg7);
 
                 return packet.toPacket();
         }

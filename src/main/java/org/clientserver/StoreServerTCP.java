@@ -38,7 +38,7 @@ public class StoreServerTCP {
                 try{
                     Socket socket = serverSocket.accept();
 
-                    final byte[] inputMessage = new byte[100];
+                    final byte[] inputMessage = new byte[20000];
                     final InputStream inputStream = socket.getInputStream();
                     final int messageSize = inputStream.read(inputMessage);
 

@@ -48,7 +48,7 @@ public class StoreClientUDP {
 
                         historySent.put(j, bytes);
 
-                        final byte[] inputMessage = new byte[300];
+                        final byte[] inputMessage = new byte[20000];
                         final DatagramPacket response = new DatagramPacket(inputMessage, inputMessage.length);
 
                         try {
@@ -89,7 +89,7 @@ public class StoreClientUDP {
 
                                 historySent.put(key, bytes);
 
-                                final byte[] inputMessage = new byte[300];
+                                final byte[] inputMessage = new byte[20000];
                                 final DatagramPacket response = new DatagramPacket(inputMessage, inputMessage.length);
 
                                 try {
