@@ -3,8 +3,10 @@ package org.clientserver;
 import com.google.common.primitives.UnsignedLong;
 import org.apache.commons.codec.binary.Hex;
 import org.clientserver.classes.DeEncriptor;
+import org.clientserver.entities.DaoProduct;
 import org.clientserver.entities.Message;
 import org.clientserver.entities.Packet;
+import org.clientserver.entities.Product;
 import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
@@ -73,5 +75,34 @@ public class MainTest{
         byte [] packBytes1 = packet1.toPacket();//encodes packet
 
         assert(Arrays.equals(packBytes, packBytes1));
+    }
+
+    @Test
+    void check_insert_and_get_product(){
+        Product product = new Product(1,"гречка",234.5,324,"good","rodyna",1);
+        DaoProduct  daoProduct = new DaoProduct("test");
+
+        daoProduct.insertProduct(product);
+        Product insertedProduct = daoProduct.getProduct(1);
+
+        assert(product.equals(insertedProduct));
+
+        daoProduct.deleteTable();
+    }
+
+    @Test
+    void check_update_and_insert_product(){
+        Product product1 = new Product(1,"гречка",234.5,324,"good","rodyna",1);
+        Product product2 = new Product(1,"пшоно",234.5,324,"good","rodyna",1);
+
+        DaoProduct  daoProduct = new DaoProduct("test");
+        daoProduct.insertProduct(product1);
+        daoProduct.updateProduct(product2);
+
+        Product updatedProduct = daoProduct.getProduct(1);
+
+        assert(product2.equals(updatedProduct));
+
+        daoProduct.deleteTable();
     }
 }

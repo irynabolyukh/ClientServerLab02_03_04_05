@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -45,7 +46,6 @@ public class StoreServerTCP {
                         try {
                             byte[] fullPacket = new byte[messageSize];
                             System.arraycopy(inputMessage, 0, fullPacket, 0, messageSize);
-
                             final OutputStream outputStream = socket.getOutputStream();
                             outputStream.write(Processor.process(fullPacket));
 

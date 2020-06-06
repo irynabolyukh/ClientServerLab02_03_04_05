@@ -66,5 +66,13 @@ public class Product {
                 ", amount="+ amount + ", description="+description +
                 ", manufacturer="+manufacturer + ", group_id="+group_id+')';
     }
+
+    public boolean equals(Product p){
+        if(this.id.equals(p.getId()) && this.name.equals(p.getName()) && this.amount == p.getAmount()
+                && this.price == p.getPrice() && this.description.equals(p.getDescription()) && this.manufacturer.equals(p.getManufacturer())){
+            return true;
+        }
+        return false;
+    }
 }
 
