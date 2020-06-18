@@ -22,7 +22,6 @@ import com.sun.net.httpserver.HttpServer;
 
 import org.clientserver.Dao.*;
 import org.clientserver.http.*;
-import org.json.JSONObject;
 
 public class Server {
 
@@ -55,7 +54,7 @@ public class Server {
 
         for (int i = 0; i < 10; i++) {
             PRODUCT_DAO.insertProduct(
-                    new Product(i, "name-" + i, Math.random() * 100, 10, "good", "Harvest", 1)
+                    Product.of(i, "name-" + i, 100, 10, "good", "Harvest", 1)
             );
         }
 
@@ -87,9 +86,6 @@ public class Server {
             enpoint.get().handler()
                     .handle(exchange);
         } else {
-            // default handler
-            // 404
-            System.out.println("ooooooooooooo");
             handlerNoFound(exchange);
         }
     }
@@ -100,29 +96,33 @@ public class Server {
                     .add("Content-Type", "application/json");
 
             String method = exchange.getRequestMethod();
-            System.out.println(method);
 
-            if (!exchange.getPrincipal().getRealm().equals("admin") &&
-                    !exchange.getPrincipal().getRealm().equals("user")) {
+            if (!exchange.getPrincipal().getRealm().equals("admin")) {
                 writeResponse(exchange, 403, ErrorResponse.of("No permission"));
                 return;
             }
 
             final int productId = Integer.parseInt(pathParams.get("productId"));
+            final Product product = PRODUCT_DAO.getProduct(productId);
 
             if (method.equals("GET")) {
-                final Product product = PRODUCT_DAO.getProduct(productId);
 
                 if (product != null) {
                     writeResponse(exchange, 200, product);
                 } else {
                     writeResponse(exchange, 404, ErrorResponse.of("No such product"));
                 }
-            } else if (method.equals("DELETE")) {
-                int deleted = PRODUCT_DAO.deleteProduct(productId);
 
-                if (deleted == productId) {
-                    exchange.sendResponseHeaders(204, -1);
+            } else if (method.equals("DELETE")) {
+
+                if (product != null) {
+                    int deleted = PRODUCT_DAO.deleteProduct(productId);
+
+                    if (deleted == productId) {
+                        exchange.sendResponseHeaders(204, -1);
+                    } else {
+                        writeResponse(exchange, 404, ErrorResponse.of("Deletion failed"));
+                    }
                 } else {
                     writeResponse(exchange, 404, ErrorResponse.of("No such product"));
                 }
@@ -138,7 +138,6 @@ public class Server {
 
     private void putProductHandler(final HttpExchange exchange, final Map<String, String> pathParams) {
         try (final InputStream requestBody = exchange.getRequestBody()) {
-
             exchange.getResponseHeaders()
                     .add("Content-Type", "application/json");
 
@@ -148,22 +147,26 @@ public class Server {
                 writeResponse(exchange, 403, ErrorResponse.of("No permission"));
                 return;
             }
-            Product test = new Product(2, "goroshok", 12, 320, "good", "Roshen", 3);
-            PRODUCT_DAO.insertProduct(test);
+
             if (method.equals("PUT")) {
                 final Product product = OBJECT_MAPPER.readValue(requestBody, Product.class);
 
                 if (product != null) {
+
                     if (product.getId() > 0 && product.getAmount() >= 0 && product.getPrice() > 0 && product.getGroup_id() > 0) {
+
                         PRODUCT_DAO.insertProduct(product);
                         writeResponse(exchange, 201, SuccessResponse.of("Successfully created product!", product.getId()));
+
                     } else {
                         writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
                     }
                 } else {
                     writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
                 }
+
             } else if (method.equals("POST")) {
+
                 final Product productReceived = OBJECT_MAPPER.readValue(requestBody, Product.class);
 
                 Product product = PRODUCT_DAO.getProduct(productReceived.getId());
@@ -204,13 +207,13 @@ public class Server {
                     Integer group_id = productReceived.getGroup_id();
                     if (group_id > 0) {
                         product.setGroup_id(group_id);
-                    } else if(group_id < 0){
+                    } else if (group_id < 0) {
                         writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
                         return;
                     }
 
                     int updated = PRODUCT_DAO.updateProduct(product);
-                    
+
                     if (updated > 0) {
                         exchange.sendResponseHeaders(204, -1);
                     } else {
@@ -239,6 +242,7 @@ public class Server {
 
     private void loginHandler(final HttpExchange exchange, final Map<String, String> pathParams) {
         try (final InputStream requestBody = exchange.getRequestBody()) {
+
             final UserCredential userCredential = OBJECT_MAPPER.readValue(requestBody, UserCredential.class);
             final User user = USER_DAO.getByLogin(userCredential.getLogin());
 
@@ -246,6 +250,7 @@ public class Server {
                     .add("Content-Type", "application/json");
 
             if (user != null) {
+
                 if (user.getPassword().equals(DigestUtils.md5Hex(userCredential.getPassword()))) {
                     final LoginResponse loginResponse = LoginResponse.of(JwtService.generateToken(user), user.getLogin(), user.getRole());
                     writeResponse(exchange, 200, loginResponse);
@@ -280,11 +285,12 @@ public class Server {
         @Override
         public Result authenticate(final HttpExchange httpExchange) {
             final String token = httpExchange.getRequestHeaders().getFirst(AUTHORIZATION_HEADER);
-            System.out.println(token);//null
+
             if (token != null) {
                 try {
                     final String username = JwtService.getUsernameFromToken(token);
                     final User user = USER_DAO.getByLogin(username);
+
                     if (user != null) {
                         return new Success(new HttpPrincipal(username, user.getRole()));
                     } else {

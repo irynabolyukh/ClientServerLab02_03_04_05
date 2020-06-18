@@ -1,9 +1,13 @@
 package org.clientserver.Dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.json.JSONObject;
 
 @Data
+@NoArgsConstructor(staticName = "empty")
+@AllArgsConstructor(staticName = "of")
 public class Product {
 
     private Integer id;
@@ -14,23 +18,6 @@ public class Product {
     private String manufacturer;
     private Integer group_id;
 
-    public Product(){
-
-    }
-
-    public Product(final Integer id, final String name, final double price, final double amount, final String description, String manufacturer, Integer group_id) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.amount = amount;
-        this.description = description;
-        this.manufacturer = manufacturer;
-        this.group_id = group_id;
-    }
-
-//    public Product(final String name, final double price, final double amount, final String description, String manufacturer, Integer group_id) {
-//        this(null, name, price, amount, description, manufacturer, group_id);
-//    }
 
     public JSONObject toJSON(){
 

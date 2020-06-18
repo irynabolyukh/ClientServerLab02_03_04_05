@@ -49,7 +49,7 @@ public class DaoProduct {
             final String sql = String.format("select * from 'products' where id = %s", id);
             final ResultSet resultSet = statement.executeQuery(sql);
 
-            Product product = new Product(resultSet.getInt("id"),
+            Product product = Product.of(resultSet.getInt("id"),
                     resultSet.getString("name"),
                     resultSet.getDouble("price"),
                     resultSet.getDouble("amount"),
@@ -111,7 +111,7 @@ public class DaoProduct {
     public int deleteProduct(int id){
 
         try(final PreparedStatement preparedStatement = connection.prepareStatement("delete from 'products' where id = ?")) {
-            preparedStatement.setDouble(1, id);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
 
             return id;
@@ -174,7 +174,7 @@ public class DaoProduct {
 
             final List<Product> products = new ArrayList<>();
             while(resultSet.next()){
-                products.add(new Product(resultSet.getInt("id"),
+                products.add( Product.of(resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getDouble("price"),
                         resultSet.getDouble("amount"),
