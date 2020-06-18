@@ -1,7 +1,9 @@
-package org.clientserver.entities;
+package org.clientserver.Dao;
 
+import lombok.Data;
 import org.json.JSONObject;
 
+@Data
 public class Product {
 
     private final Integer id;
@@ -24,30 +26,6 @@ public class Product {
 
     public Product(final String name, final double price, final double amount, final String description, String manufacturer, Integer group_id) {
         this(null, name, price, amount, description, manufacturer, group_id);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public String getDescription() { return description; }
-
-    public String getManufacturer() { return manufacturer; }
-
-    public Integer getGroup_id() {
-        return group_id;
     }
 
     public JSONObject toJSON(){

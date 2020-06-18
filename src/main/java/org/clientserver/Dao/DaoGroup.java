@@ -1,4 +1,4 @@
-package org.clientserver.entities;
+package org.clientserver.Dao;
 
 import org.json.JSONObject;
 

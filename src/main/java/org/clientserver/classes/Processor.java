@@ -1,4 +1,5 @@
 package org.clientserver.classes;
+import org.clientserver.Dao.*;
 import org.clientserver.entities.*;
 import org.json.JSONArray;
 import org.json.JSONObject;

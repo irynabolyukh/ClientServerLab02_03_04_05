@@ -1,6 +1,11 @@
-package org.clientserver.entities;
+package org.clientserver.classes;
 
 import com.google.common.primitives.UnsignedLong;
+import org.clientserver.Dao.Group;
+import org.clientserver.Dao.Product;
+import org.clientserver.Dao.ProductFilter;
+import org.clientserver.entities.Message;
+import org.clientserver.entities.Packet;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
