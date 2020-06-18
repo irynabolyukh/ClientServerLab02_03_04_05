@@ -58,7 +58,9 @@ public class DaoProduct {
                     resultSet.getInt("group_id"));
             return product;
         } catch (SQLException e) {
-            throw new RuntimeException("Can't get product", e);
+            e.printStackTrace();
+            return null;
+//            throw new RuntimeException("Can't get product", e);
         }
     }
 
@@ -79,14 +81,15 @@ public class DaoProduct {
                 final ResultSet result = insertStatement.getGeneratedKeys();
                 return result.getInt("last_insert_rowid()");
             } catch (SQLException e) {
-                throw new RuntimeException("Can't insert product", e);
+                e.printStackTrace();
+                return -1;
+//                throw new RuntimeException("Can't insert product", e);
             }
         }
         return -1;
     }
 
     public int updateProduct(Product product){
-        if(isNameUnique(product.getName())) {
             try (final PreparedStatement preparedStatement =
                          connection.prepareStatement("update 'products' set name = ?, price = ?, amount = ?, description = ?, manufacturer = ?, group_id = ?  where id = ?")) {
                 preparedStatement.setString(1, product.getName());
@@ -99,10 +102,10 @@ public class DaoProduct {
                 preparedStatement.executeUpdate();
                 return product.getId();
             } catch (SQLException e) {
-                throw new RuntimeException("Can't update product", e);
+                e.printStackTrace();
+                return -1;
+//                throw new RuntimeException("Can't update product", e);
             }
-        }
-        return -1;
     }
 
     public int deleteProduct(int id){
@@ -113,7 +116,9 @@ public class DaoProduct {
 
             return id;
         } catch (SQLException e) {
-            throw new RuntimeException("Can't delete product", e);
+            e.printStackTrace();
+            return -1;
+            //throw new RuntimeException("Can't delete product", e);
         }
     }
 

@@ -21,10 +21,8 @@ import com.sun.net.httpserver.HttpPrincipal;
 import com.sun.net.httpserver.HttpServer;
 
 import org.clientserver.Dao.*;
-import org.clientserver.http.Enpoint;
-import org.clientserver.http.ErrorResponse;
-import org.clientserver.http.JwtService;
-import org.clientserver.http.LoginResponse;
+import org.clientserver.http.*;
+import org.json.JSONObject;
 
 public class Server {
 
@@ -57,13 +55,15 @@ public class Server {
 
         for (int i = 0; i < 10; i++) {
             PRODUCT_DAO.insertProduct(
-                   new Product("name-" + i,Math.random() * 100,10,"good","Harvest",1)
+                    new Product(i, "name-" + i, Math.random() * 100, 10, "good", "Harvest", 1)
             );
         }
 
         this.enpoints = new ArrayList<Enpoint>();
-        enpoints.add(Enpoint.of("\\/login", this::loginHandler,  (a, b) -> new HashMap<>()));
+        enpoints.add(Enpoint.of("\\/login", this::loginHandler, (a, b) -> new HashMap<>()));
+        enpoints.add(Enpoint.of("\\/api\\/product", this::putProductHandler, (a, b) -> new HashMap<>()));
         enpoints.add(Enpoint.of("^\\/api\\/product\\/(\\d+)$", this::getProductByIdHandler, this::getProductParamId));
+
 
         this.server = HttpServer.create();
         server.bind(new InetSocketAddress(8080), 0);
@@ -73,7 +73,7 @@ public class Server {
     }
 
     public void stop() {
-        this.server.stop(1);
+        this.server.stop(1);//timeout - 1
     }
 
     private void rootHandler(final HttpExchange exchange) throws IOException {
@@ -89,6 +89,7 @@ public class Server {
         } else {
             // default handler
             // 404
+            System.out.println("ooooooooooooo");
             handlerNoFound(exchange);
         }
     }
@@ -98,19 +99,130 @@ public class Server {
             exchange.getResponseHeaders()
                     .add("Content-Type", "application/json");
 
-            if (!exchange.getPrincipal().getRealm().equals("admin")) {
+            String method = exchange.getRequestMethod();
+            System.out.println(method);
+
+            if (!exchange.getPrincipal().getRealm().equals("admin") &&
+                    !exchange.getPrincipal().getRealm().equals("user")) {
                 writeResponse(exchange, 403, ErrorResponse.of("No permission"));
                 return;
             }
 
             final int productId = Integer.parseInt(pathParams.get("productId"));
-            final Product product = PRODUCT_DAO.getProduct(productId);
 
-            if (product != null) {
-                writeResponse(exchange, 200, product);
+            if (method.equals("GET")) {
+                final Product product = PRODUCT_DAO.getProduct(productId);
+
+                if (product != null) {
+                    writeResponse(exchange, 200, product);
+                } else {
+                    writeResponse(exchange, 404, ErrorResponse.of("No such product"));
+                }
+            } else if (method.equals("DELETE")) {
+                int deleted = PRODUCT_DAO.deleteProduct(productId);
+
+                if (deleted == productId) {
+                    exchange.sendResponseHeaders(204, -1);
+                } else {
+                    writeResponse(exchange, 404, ErrorResponse.of("No such product"));
+                }
+
             } else {
-                writeResponse(exchange, 404, ErrorResponse.of("No such product"));
+                writeResponse(exchange, 404, ErrorResponse.of("Not appropriate command"));
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void putProductHandler(final HttpExchange exchange, final Map<String, String> pathParams) {
+        try (final InputStream requestBody = exchange.getRequestBody()) {
+
+            exchange.getResponseHeaders()
+                    .add("Content-Type", "application/json");
+
+            String method = exchange.getRequestMethod();
+
+            if (!exchange.getPrincipal().getRealm().equals("admin")) {
+                writeResponse(exchange, 403, ErrorResponse.of("No permission"));
+                return;
+            }
+            Product test = new Product(2, "goroshok", 12, 320, "good", "Roshen", 3);
+            PRODUCT_DAO.insertProduct(test);
+            if (method.equals("PUT")) {
+                final Product product = OBJECT_MAPPER.readValue(requestBody, Product.class);
+
+                if (product != null) {
+                    if (product.getId() > 0 && product.getAmount() >= 0 && product.getPrice() > 0 && product.getGroup_id() > 0) {
+                        PRODUCT_DAO.insertProduct(product);
+                        writeResponse(exchange, 201, SuccessResponse.of("Successfully created product!", product.getId()));
+                    } else {
+                        writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
+                    }
+                } else {
+                    writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
+                }
+            } else if (method.equals("POST")) {
+                final Product productReceived = OBJECT_MAPPER.readValue(requestBody, Product.class);
+
+                Product product = PRODUCT_DAO.getProduct(productReceived.getId());
+
+                if (product != null) {
+
+                    String name = productReceived.getName();
+                    if (name != null) {
+                        product.setName(name);
+                    }
+
+                    double price = productReceived.getPrice();
+                    if (price > 0) {
+                        product.setPrice(price);
+                    } else if (price < 0) {
+                        writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
+                        return;
+                    }
+
+                    double amount = productReceived.getAmount();
+                    if (amount > 0) {
+                        product.setAmount(amount);
+                    } else if (amount < 0) {
+                        writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
+                        return;
+                    }
+
+                    String description = productReceived.getDescription();
+                    if (description != null) {
+                        product.setDescription(description);
+                    }
+
+                    String manufacturer = productReceived.getManufacturer();
+                    if (manufacturer != null) {
+                        product.setManufacturer(manufacturer);
+                    }
+
+                    Integer group_id = productReceived.getGroup_id();
+                    if (group_id > 0) {
+                        product.setGroup_id(group_id);
+                    } else if(group_id < 0){
+                        writeResponse(exchange, 409, ErrorResponse.of("Wrong input"));
+                        return;
+                    }
+
+                    int updated = PRODUCT_DAO.updateProduct(product);
+                    
+                    if (updated > 0) {
+                        exchange.sendResponseHeaders(204, -1);
+                    } else {
+                        writeResponse(exchange, 404, ErrorResponse.of("Can't update product"));
+                    }
+                } else {
+                    writeResponse(exchange, 404, ErrorResponse.of("No such product"));
+                }
+            } else {
+                writeResponse(exchange, 404, ErrorResponse.of("Not appropriate command"));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,7 +232,7 @@ public class Server {
         final Matcher matcher = pattern.matcher(uri);
         matcher.find();
 
-        return new HashMap<String, String>(){{
+        return new HashMap<String, String>() {{
             put("productId", matcher.group(1));
         }};
     }
@@ -168,7 +280,7 @@ public class Server {
         @Override
         public Result authenticate(final HttpExchange httpExchange) {
             final String token = httpExchange.getRequestHeaders().getFirst(AUTHORIZATION_HEADER);
-
+            System.out.println(token);//null
             if (token != null) {
                 try {
                     final String username = JwtService.getUsernameFromToken(token);

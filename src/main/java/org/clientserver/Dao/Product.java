@@ -6,13 +6,17 @@ import org.json.JSONObject;
 @Data
 public class Product {
 
-    private final Integer id;
-    private final String name;
-    private final double price;
-    private final double amount;
-    private final String description;
-    private final String manufacturer;
-    private final Integer group_id;
+    private Integer id;
+    private String name;
+    private double price;
+    private double amount;
+    private String description;
+    private String manufacturer;
+    private Integer group_id;
+
+    public Product(){
+
+    }
 
     public Product(final Integer id, final String name, final double price, final double amount, final String description, String manufacturer, Integer group_id) {
         this.id = id;
@@ -24,9 +28,9 @@ public class Product {
         this.group_id = group_id;
     }
 
-    public Product(final String name, final double price, final double amount, final String description, String manufacturer, Integer group_id) {
-        this(null, name, price, amount, description, manufacturer, group_id);
-    }
+//    public Product(final String name, final double price, final double amount, final String description, String manufacturer, Integer group_id) {
+//        this(null, name, price, amount, description, manufacturer, group_id);
+//    }
 
     public JSONObject toJSON(){
 
